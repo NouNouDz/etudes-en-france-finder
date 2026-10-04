@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configuration & Favoris | Études en France Assistant</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="options-layout">
+    <!-- Sidebar -->
+    <aside class="options-sidebar">
+      <div class="sidebar-brand">
+        <svg class="brand-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="15" fill="#000091" stroke="#fff" stroke-width="2"/>
+          <path d="M16 8L24 13L16 18L8 13L16 8Z" fill="#fff"/>
+          <path d="M11 15.5V20.5C11 22.5 13.5 24 16 24C18.5 24 21 22.5 21 20.5V15.5" stroke="#fff" stroke-width="1.8" fill="none"/>
+          <circle cx="23" cy="10" r="3" fill="#FBBF24"/>
+        </svg>
+        <div>
+          <h2 class="brand-title">Études en France</h2>
+          <p class="brand-sub">Assistant Catalogue</p>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="tab-profile">
+          👤 Mon Profil Candidat
+        </button>
+        <button class="nav-item" data-tab="tab-keywords">
+          🔑 Mots-clés & Domaines
+        </button>
+        <button class="nav-item" data-tab="tab-institutions">
+          🏛️ Établissements & Régions
+        </button>
+        <button class="nav-item" data-tab="tab-favorites">
+          ⭐ Formations Favorites (<span id="sidebar-fav-count">0</span>)
+        </button>
+        <button class="nav-item" data-tab="tab-backup">
+          💾 Sauvegarde & Import
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button type="button" id="btn-save-all" class="btn btn-primary w-full">
+          💾 Enregistrer les réglages
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="options-content">
+      <!-- Notification Toast -->
+      <div id="toast" class="toast" hidden>Modifications enregistrées avec succès !</div>
+
+      <!-- Tab 1: Profile -->
+      <section id="tab-profile" class="tab-pane active">
+        <div class="pane-header">
+          <h1 class="pane-title">Mon Profil Candidat</h1>
+          <p class="pane-desc">Définissez vos objectifs d'études pour ajuster automatiquement le calcul de pertinence.</p>
+        </div>
+
+        <div class="card">
+          <div class="form-group">
+            <label for="current-degree" class="form-label">Diplôme / Formation actuelle</label>
+            <input type="text" id="current-degree" class="form-input" value="Licence Informatique" placeholder="Ex: Licence Informatique, Bachelor Web...">
+          </div>
+
+          <div class="form-group">
+            <label for="target-degree" class="form-label">Niveau cible recherché</label>
+            <select id="target-degree" class="form-select">
+              <option value="Master" selected>Master / Bac+5</option>
+              <option value="Engineering">Diplôme d'ingénieur</option>
+              <option value="Licence">Licence / Bachelor (Bac+3)</option>
+              <option value="Doctorate">Doctorat / PhD</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Seuil de score minimal pour afficher une formation</label>
+            <div class="slider-wrapper">
+              <input type="range" id="opt-min-score" min="0" max="95" step="5" value="60" class="score-slider">
+              <span id="opt-min-score-val" class="score-badge">60%</span>
+            </div>
+            <p class="form-help">Les formations avec un score inférieur seront masquées par défaut dans le catalogue.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab 2: Keywords -->
+      <section id="tab-keywords" class="tab-pane">
+        <div class="pane-header">
+          <h1 class="pane-title">Mots-clés & Domaines d'intérêt</h1>
+          <p class="pane-desc">Personnalisez les termes utilisés pour le calcul du score de pertinence.</p>
+        </div>
+
+        <!-- AI Keywords -->
+        <div class="card mb-4">
+          <h3 class="card-title">🤖 Intelligence Artificielle & Data (+30% max)</h3>
+          <p class="card-desc">Formations recevant une priorité maximale si ces termes sont présents.</p>
+          <div id="ai-tags-container" class="tags-container"></div>
+          <div class="tag-input-row">
+            <input type="text" id="ai-tag-input" class="form-input" placeholder="Ajouter un mot-clé (ex: LLM, Vision)...">
+            <button type="button" id="btn-add-ai-tag" class="btn btn-secondary">Ajouter</button>
+          </div>
+        </div>
+
+        <!-- CS Keywords -->
+        <div class="card mb-4">
+          <h3 class="card-title">💻 Informatique & Génie Logiciel (+25% max)</h3>
+          <p class="card-desc">Termes généraux liés au tronc commun informatique.</p>
+          <div id="cs-tags-container" class="tags-container"></div>
+          <div class="tag-input-row">
+            <input type="text" id="cs-tag-input" class="form-input" placeholder="Ajouter un mot-clé (ex: DevOps, Rust)...">
+            <button type="button" id="btn-add-cs-tag" class="btn btn-secondary">Ajouter</button>
+          </div>
+        </div>
+
+        <!-- Excluded/Negative Keywords -->
+        <div class="card">
+          <h3 class="card-title">⛔ Domaines pénalisés (-35%)</h3>
+          <p class="card-desc">Termes indiquant des formations hors de votre cursus cible (ex: Droit pur, FLE, Journalisme...).</p>
+          <div id="neg-tags-container" class="tags-container"></div>
+          <div class="tag-input-row">
+            <input type="text" id="neg-tag-input" class="form-input" placeholder="Ajouter un domaine à pénaliser...">
+            <button type="button" id="btn-add-neg-tag" class="btn btn-secondary">Ajouter</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab 3: Institutions & Regions -->
+      <section id="tab-institutions" class="tab-pane">
+        <div class="pane-header">
+          <h1 class="pane-title">Établissements & Géographie</h1>
+          <p class="pane-desc">Choisissez les statuts d'établissements et régions géographiques acceptés.</p>
+        </div>
+
+        <div class="card mb-4">
+          <h3 class="card-title">Type et Statut d'établissement</h3>
+          <div class="checkbox-list">
+            <label class="checkbox-row">
+              <input type="checkbox" id="opt-inst-univ" checked>
+              <div>
+                <strong>Universités publiques françaises</strong>
+                <p class="row-sub">Universités sous tutelle d'État (Sorbonne, Rennes, Montpellier, Paris-Saclay...).</p>
+              </div>
+            </label>
+            <label class="checkbox-row">
+              <input type="checkbox" id="opt-inst-eng" checked>
+              <div>
+                <strong>Grandes écoles d'ingénieurs publiques</strong>
+                <p class="row-sub">Écoles habilitées CTI publiques (Polytech, INSA, Centrale, IMT, INP...).</p>
+              </div>
+            </label>
+            <label class="checkbox-row">
+              <input type="checkbox" id="opt-inst-pub-other" checked>
+              <div>
+                <strong>Autres instituts publics (IUT, Grands Établissements)</strong>
+                <p class="row-sub">Établissements publics d'enseignement supérieur.</p>
+              </div>
+            </label>
+            <label class="checkbox-row">
+              <input type="checkbox" id="opt-inst-private">
+              <div>
+                <strong>Établissements et écoles privées</strong>
+                <p class="row-sub">Facultés catholiques privées, écoles de commerce privées, écoles tech privées.</p>
+              </div>
+            </label>
+            <label class="checkbox-row">
+              <input type="checkbox" id="opt-inst-unknown" checked>
+              <div>
+                <strong>Inclure les établissements au statut non confirmé</strong>
+                <p class="row-sub">Conserver les établissements dont le statut public/privé ne peut être garanti.</p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab 4: Favorites -->
+      <section id="tab-favorites" class="tab-pane">
+        <div class="pane-header flex-between">
+          <div>
+            <h1 class="pane-title">Formations Favorites</h1>
+            <p class="pane-desc">Vos formations sauvegardées avec leurs notes de pertinence et liens directs.</p>
+          </div>
+          <div class="flex gap-2">
+            <button type="button" id="btn-export-favorites-csv" class="btn btn-primary">
+              📥 Exporter favoris (CSV)
+            </button>
+            <button type="button" id="btn-clear-favorites" class="btn btn-secondary">
+              🗑️ Tout effacer
+            </button>
+          </div>
+        </div>
+
+        <div id="favorites-list" class="favorites-grid">
+          <!-- Populated dynamically -->
+        </div>
+      </section>
+
+      <!-- Tab 5: Backup & Restore -->
+      <section id="tab-backup" class="tab-pane">
+        <div class="pane-header">
+          <h1 class="pane-title">Sauvegarde & Restauration</h1>
+          <p class="pane-desc">Sauvegardez votre configuration ou restaurez les paramètres par défaut.</p>
+        </div>
+
+        <div class="card mb-4">
+          <h3 class="card-title">Sauvegarde JSON</h3>
+          <p class="card-desc">Téléchargez une sauvegarde de vos paramètres et favoris, ou restaurez un fichier existant.</p>
+          <div class="flex gap-2 mt-4">
+            <button type="button" id="btn-download-backup" class="btn btn-primary">
+              📤 Télécharger la sauvegarde (JSON)
+            </button>
+            <label class="btn btn-secondary cursor-pointer">
+              📥 Importer un fichier JSON
+              <input type="file" id="input-restore-backup" accept=".json" hidden>
+            </label>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title text-danger">Réinitialisation</h3>
+          <p class="card-desc">Rétablir tous les paramètres par défaut de l'extension.</p>
+          <button type="button" id="btn-reset-defaults" class="btn btn-danger mt-4">
+            ⚠️ Réinitialiser aux réglages d'origine
+          </button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

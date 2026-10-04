@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formation Finder | Études en France</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="popup-header">
+      <div class="header-left">
+        <svg class="header-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="15" fill="#000091" stroke="#fff" stroke-width="2"/>
+          <path d="M16 8L24 13L16 18L8 13L16 8Z" fill="#fff"/>
+          <path d="M11 15.5V20.5C11 22.5 13.5 24 16 24C18.5 24 21 22.5 21 20.5V15.5" stroke="#fff" stroke-width="1.8" fill="none"/>
+          <circle cx="23" cy="10" r="3" fill="#FBBF24"/>
+        </svg>
+        <div>
+          <h1 class="header-title">Formation Finder</h1>
+          <p class="header-subtitle">Études en France Assistant</p>
+        </div>
+      </div>
+      <label class="switch" title="Activer / Désactiver le filtrage">
+        <input type="checkbox" id="master-toggle" checked>
+        <span class="slider round"></span>
+      </label>
+    </header>
+
+    <!-- Page Stats Banner -->
+    <div id="page-stats-banner" class="stats-banner">
+      <span>📊 Page catalogue :</span>
+      <span id="page-stats-info" class="stats-highlight">Chargement...</span>
+    </div>
+
+    <!-- Multi-Page Crawler Banner -->
+    <div class="crawler-banner">
+      <div class="crawler-header">
+        <span class="crawler-title">🚀 Navigation multi-pages :</span>
+        <button type="button" id="btn-popup-scan" class="crawler-scan-btn">
+          Scanner tout (Suivant)
+        </button>
+      </div>
+      <div class="crawler-actions-row">
+        <button type="button" id="btn-popup-view-matches" class="crawler-matches-btn">
+          ✨ Formations retenues (<span id="popup-matches-count">0</span>)
+        </button>
+      </div>
+    </div>
+
+    <form id="filter-form">
+      <!-- Section 1: Institution Types & Status -->
+      <section class="filter-section">
+        <h2 class="section-title">🏛️ Établissement</h2>
+        <div class="checkbox-grid">
+          <label class="checkbox-label">
+            <input type="checkbox" id="inst-university" name="instUniversity" checked>
+            <span>Universités</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="inst-public" name="instPublic" checked>
+            <span>Établissements publics</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="inst-engineering" name="instEngineering" checked>
+            <span>Écoles d'ingénieurs</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="inst-private" name="instPrivate">
+            <span>Établissements privés</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="inst-unknown" name="instUnknown" checked>
+            <span>Inclure statut inconnu</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Section 2: Degree / Diploma -->
+      <section class="filter-section">
+        <h2 class="section-title">🎓 Diplôme & Niveau</h2>
+        <div class="checkbox-grid">
+          <label class="checkbox-label">
+            <input type="checkbox" id="degree-master" name="degMaster" checked>
+            <span>Master / Bac+5</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="degree-engineering" name="degEngineering" checked>
+            <span>Diplôme d'ingénieur</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="degree-licence" name="degLicence">
+            <span>Licence / Bachelor</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="degree-doctorate" name="degDoctorate">
+            <span>Doctorat / PhD</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Section 3: Fields & Specializations -->
+      <section class="filter-section">
+        <h2 class="section-title">💡 Domaines & Mots-clés</h2>
+        <div class="checkbox-grid">
+          <label class="checkbox-label">
+            <input type="checkbox" id="field-ai" name="fieldAI" checked>
+            <span>Intelligence Artificielle</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="field-cs" name="fieldCS" checked>
+            <span>Informatique</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="field-data" name="fieldData" checked>
+            <span>Data Science / Big Data</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="field-ml" name="fieldML" checked>
+            <span>Machine Learning</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="field-se" name="fieldSE" checked>
+            <span>Génie Logiciel</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="field-cyber" name="fieldCyber">
+            <span>Cybersécurité & Réseaux</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Section 4: Minimum Match Score Slider -->
+      <section class="filter-section">
+        <div class="score-header">
+          <h2 class="section-title m-0">🎯 Score de pertinence min.</h2>
+          <span id="score-display" class="score-val-badge">60%</span>
+        </div>
+        <input type="range" id="min-score-slider" min="0" max="95" step="5" value="60" class="score-slider">
+        <div class="slider-ticks">
+          <span>0%</span>
+          <span>50%</span>
+          <span>75%</span>
+          <span>95%</span>
+        </div>
+      </section>
+
+      <!-- Action Buttons -->
+      <div class="actions-group">
+        <button type="submit" id="btn-apply" class="btn btn-primary">
+          ✓ Appliquer les filtres
+        </button>
+        <button type="button" id="btn-export-csv" class="btn btn-secondary" title="Télécharger les formations sélectionnées en CSV">
+          📥 Exporter CSV
+        </button>
+      </div>
+    </form>
+
+    <!-- Footer Links -->
+    <footer class="popup-footer">
+      <button type="button" id="btn-favorites" class="footer-btn">
+        ⭐ Favoris (<span id="fav-count">0</span>)
+      </button>
+      <button type="button" id="btn-options" class="footer-btn">
+        ⚙️ Profil & Mots-clés
+      </button>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

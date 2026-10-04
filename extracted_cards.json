@@ -1,0 +1,92 @@
+[
+  {
+    "id": "card-1",
+    "title": "Master Arts, lettres, langues mention français langue étrangère",
+    "diploma": "Master indifférencié (recherche et professionnel)",
+    "schoolRaw": "Université Lumière - Lyon 2 / UFR des lettres, sciences du langage et arts",
+    "city": "Bron",
+    "level": "Niveau d'entrée : Bac +4",
+    "url": "https://etudesenfrance.diplomatie.gouv.fr/catalogue-formations/formation/23201/site/13737"
+  },
+  {
+    "id": "card-2",
+    "title": "Master Droit, économie, gestion mention droit des affaires",
+    "diploma": "Master indifférencié (recherche et professionnel)",
+    "schoolRaw": "Université d'Aix-Marseille / UFR Droit et science politique",
+    "city": "Aix-en-Provence",
+    "level": "Niveau d'entrée : Bac +4",
+    "url": "https://etudesenfrance.diplomatie.gouv.fr/catalogue-formations/formation/20037/site/6577"
+  },
+  {
+    "id": "card-3",
+    "title": "Master Droit, économie, gestion mention management des systèmes d'information",
+    "diploma": "Master indifférencié (recherche et professionnel)",
+    "schoolRaw": "Université de Bretagne Occidentale / Ecole universitaire de management de l'UBO",
+    "city": "Brest",
+    "level": "Niveau d'entrée : Bac +4",
+    "url": "https://etudesenfrance.diplomatie.gouv.fr/catalogue-formations/formation/20260/site/7397"
+  },
+  {
+    "id": "card-4",
+    "title": "Mastère Spécialisé Business Intelligence",
+    "diploma": "Mastère spécialisé",
+    "schoolRaw": "CY Cergy Paris Université / CY Tech école d'ingénieur",
+    "city": "Saint-Germain-en-Laye",
+    "level": "Niveau d'entrée : Bac +5",
+    "url": "https://etudesenfrance.diplomatie.gouv.fr/catalogue-formations/formation/19476/site/14586"
+  },
+  {
+    "id": "card-5",
+    "title": "Mastère Spécialisé ERP management",
+    "diploma": "Mastère spécialisé",
+    "schoolRaw": "CY Cergy Paris Université / CY Tech école d'ingénieur",
+    "city": "Saint-Germain-en-Laye",
+    "level": "Niveau d'entrée : Bac +5",
+    "url": "https://etudesenfrance.diplomatie.gouv.fr/catalogue-formations/formation/26871/site/14586"
+  },
+  {
+    "id": "card-6",
+    "title": "Mastère Spécialisé ERP management",
+    "diploma": "Mastère spécialisé",
+    "schoolRaw": "CY Cergy Paris Université / CY Tech école d'ingénieur",
+    "city": "Cergy",
+    "level": "Niveau d'entrée : Bac +5",
+    "url": "https://etudesenfrance.diplomatie.gouv.fr/catalogue-formations/formation/26871/site/6877"
+  },
+  {
+    "id": "card-7",
+    "title": "Master indifférencié (recherche et professionnel) Droit, économie, gestion mention  droit international et européen parcours  Sécurité Internationale, Défense, Intelligence Économique.",
+    "diploma": "Master indifférencié (recherche et professionnel)",
+    "schoolRaw": "Université Côte d'Azur / IdPD - Institut du Droit de la Paix et du Développement",
+    "city": "Nice",
+    "level": "Niveau d'entrée : Bac +5",
+    "url": "https://etudesenfrance.diplomatie.gouv.fr/catalogue-formations/formation/19916/site/10748"
+  },
+  {
+    "id": "card-8",
+    "title": "Master indifférencié (recherche et professionnel) Sciences, technologies, santé mention  informatique parcours  Programmation sûreté et sécurité",
+    "diploma": "Master indifférencié (recherche et professionnel)",
+    "schoolRaw": "Université Sorbonne Paris Nord / Institut Galilée",
+    "city": "Villetaneuse",
+    "level": "Niveau d'entrée : Bac +5",
+    "url": "https://etudesenfrance.diplomatie.gouv.fr/catalogue-formations/formation/14671/site/6725"
+  },
+  {
+    "id": "card-9",
+    "title": "Master professionnel Arts, lettres, langues mention  information, communication, culture parcours  Journalisme",
+    "diploma": "Master professionnel",
+    "schoolRaw": "Université Bourgogne Europe / UFR Lettres et Philosophie / Département Infocom",
+    "city": "Dijon",
+    "level": "Niveau d'entrée : Bac +5",
+    "url": "https://etudesenfrance.diplomatie.gouv.fr/catalogue-formations/formation/22975/site/13827"
+  },
+  {
+    "id": "card-10",
+    "title": "Master pro Sciences, technologies, santé mention écologie, environnement",
+    "diploma": "Master professionnel",
+    "schoolRaw": "Université catholique de l'Ouest / Faculté des sciences - UCO",
+    "city": "Angers",
+    "level": "Niveau d'entrée : Bac +4",
+    "url": "https://etudesenfrance.diplomatie.gouv.fr/catalogue-formations/formation/22009/site/7135"
+  }
+]

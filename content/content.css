@@ -1,0 +1,563 @@
+/**
+ * Études en France - Matcher & Filter Content Styles
+ * Built to integrate smoothly with the French Government DSFR design system.
+ */
+
+/* Hidden formations */
+.fr-card.eef-formation-hidden {
+  display: none !important;
+}
+
+/* In-page toolbar */
+.eef-toolbar {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid #000091; /* Bleu France */
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-family: Marianne, arial, sans-serif;
+  color: #1e1e1e;
+  transition: all 0.2s ease-in-out;
+}
+
+.eef-toolbar-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.eef-toolbar-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.eef-toolbar-logo {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+}
+
+.eef-toolbar-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #000091;
+  margin: 0;
+}
+
+.eef-toolbar-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 12px;
+  background: #e0e7ff;
+  color: #3730a3;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.eef-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.eef-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #374151;
+  transition: all 0.15s ease;
+  outline: none;
+}
+
+.eef-btn:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.eef-btn-primary {
+  background: #000091;
+  color: #ffffff;
+  border-color: #000091;
+}
+
+.eef-btn-primary:hover {
+  background: #1212ff;
+  border-color: #1212ff;
+}
+
+.eef-btn-active {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-color: #3b82f6;
+}
+
+.eef-toolbar-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.eef-controls-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.eef-search-input {
+  padding: 6px 12px;
+  font-size: 13px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  width: 220px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.eef-search-input:focus {
+  border-color: #000091;
+  box-shadow: 0 0 0 2px rgba(0, 0, 145, 0.15);
+}
+
+.eef-sort-select {
+  padding: 6px 10px;
+  font-size: 13px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  outline: none;
+  cursor: pointer;
+}
+
+.eef-stats-text {
+  font-size: 13px;
+  color: #4b5563;
+  margin: 0;
+}
+
+.eef-stats-highlight {
+  font-weight: 700;
+  color: #000091;
+}
+
+/* Card Injections */
+.eef-card-badge-container {
+  position: relative;
+  z-index: 2; /* Crucial: Elevate above DSFR .fr-enlarge-link a::after pseudo-element */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed #e5e7eb;
+}
+
+.eef-card-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.eef-score-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.eef-score-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.eef-institution-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+}
+
+.eef-institution-tag.is-public {
+  background: #f0fdf4;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+
+.eef-institution-tag.is-private {
+  background: #fef2f2;
+  color: #991b1b;
+  border-color: #fecaca;
+}
+
+.eef-institution-tag.is-unknown {
+  background: #fefce8;
+  color: #854d0e;
+  border-color: #fef08a;
+}
+
+.eef-favorite-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 4px 6px;
+  border-radius: 4px;
+  color: #9ca3af;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.eef-favorite-btn:hover {
+  transform: scale(1.15);
+  color: #f59e0b;
+}
+
+.eef-favorite-btn.is-active {
+  color: #f59e0b;
+}
+
+/* Score Modal / Popover */
+.eef-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  backdrop-filter: blur(2px);
+}
+
+.eef-modal {
+  background: #ffffff;
+  border-radius: 12px;
+  max-width: 540px;
+  width: 90%;
+  padding: 24px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  font-family: Marianne, arial, sans-serif;
+  color: #1f2937;
+  position: relative;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.eef-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #6b7280;
+  line-height: 1;
+}
+
+.eef-modal-close:hover {
+  color: #111827;
+}
+
+.eef-modal-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 12px 0;
+}
+
+.eef-modal-score-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+.eef-modal-score-val {
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.eef-modal-score-sub {
+  font-size: 11px;
+  opacity: 0.9;
+}
+
+.eef-modal-reasons-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px 0;
+  display: flex;
+  flex-col;
+  gap: 8px;
+}
+
+.eef-reason-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #f9fafb;
+}
+
+.eef-reason-item.is-pos {
+  background: #f0fdf4;
+  color: #166534;
+}
+
+.eef-reason-item.is-neg {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.eef-reason-item.is-info {
+  background: #eff6ff;
+  color: #1e40af;
+}
+
+.eef-modal-keywords-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.eef-modal-keyword-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: #e5e7eb;
+  color: #374151;
+}
+
+/* Auto-Scan Button & Progress Banner */
+.eef-btn-scan {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+}
+
+.eef-btn-scan:hover {
+  background: #0369a1;
+  border-color: #0369a1;
+}
+
+.eef-btn-scan.is-scanning {
+  background: #dc2626;
+  border-color: #dc2626;
+  animation: eef-pulse 1.5s infinite;
+}
+
+@keyframes eef-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
+  70% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+
+.eef-btn-results {
+  background: #16a34a;
+  color: #ffffff;
+  border-color: #16a34a;
+}
+
+.eef-btn-results:hover {
+  background: #15803d;
+  border-color: #15803d;
+}
+
+.eef-scan-progress-bar-wrap {
+  width: 100%;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.eef-scan-progress-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #0284c7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.eef-progress-track {
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.eef-progress-fill {
+  height: 100%;
+  background: #0284c7;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* Consolidated Matches Modal */
+.eef-consolidated-modal {
+  background: #ffffff;
+  border-radius: 12px;
+  max-width: 900px;
+  width: 95%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  font-family: Marianne, arial, sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+.eef-consolidated-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  background: #ffffff;
+}
+
+.eef-consolidated-header h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #000091;
+  margin: 0 0 4px 0;
+}
+
+.eef-consolidated-header p {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.eef-consolidated-toolbar {
+  padding: 12px 24px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.eef-consolidated-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.eef-match-card {
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid #16a34a;
+  border-radius: 8px;
+  padding: 16px 18px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.eef-match-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.eef-match-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.eef-match-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #000091;
+  margin: 0 0 4px 0;
+  text-decoration: none;
+}
+
+.eef-match-meta {
+  font-size: 13px;
+  color: #374151;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.eef-match-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed #f3f4f6;
+}
+
+.eef-consolidated-footer {
+  padding: 16px 24px;
+  background: #f8fafc;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
